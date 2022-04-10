@@ -28,7 +28,7 @@ class TestCase extends BaseTestCase
     {
         $schema->dropAllTables();
 
-        $schema->create('posts', static function (Blueprint $table) {
+        $schema->create('products', static function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });

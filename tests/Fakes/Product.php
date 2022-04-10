@@ -5,7 +5,7 @@ namespace Tests\Fakes;
 use Dive\Snowflake\HasSnowflake;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Product extends Model
 {
     use HasSnowflake;
 }

@@ -24,6 +24,7 @@ final class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/snowflake.php', 'snowflake');
 
         $this->app->singleton('snowflake', $this->registerSnowflake(...));
+        $this->app->alias('snowflake', Snowflake::class);
     }
 
     private function registerConfig()

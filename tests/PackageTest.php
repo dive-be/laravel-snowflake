@@ -6,7 +6,7 @@ use Dive\Snowflake\Snowflake as Facade;
 use Godruoyi\Snowflake\LaravelSequenceResolver;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Database\Schema\Blueprint;
-use Tests\Fakes\Post;
+use Tests\Fakes\Product;
 
 test('snowflake facade', function () {
     $value = Facade::id();
@@ -21,11 +21,13 @@ test('snowflake helper', function () {
 });
 
 test('service is bound correctly', function () {
-    $service = app('snowflake');
+    $serviceA = app('snowflake');
+    $serviceB = app(Snowflake::class);
 
-    expect($service)
+    expect($serviceA)
         ->toBeInstanceOf(Snowflake::class)
         ->getSequenceResolver()->toBeInstanceOf(LaravelSequenceResolver::class);
+    expect($serviceA)->toBe($serviceB);
 });
 
 test('blueprint definitions', function () {
@@ -38,9 +40,9 @@ test('blueprint definitions', function () {
 });
 
 test('model trait', function () {
-    $postA = Post::create();
-    $postB = Post::create(['id' => ($id = 1337133713371337133)]);
+    $productA = Product::create();
+    $productB = Product::create(['id' => ($id = 1337133713371337133)]);
 
-    expect($postA->getKey())->toHaveLength(19);
-    expect($postB->getKey())->toBe($id);
+    expect($productA->getKey())->toHaveLength(19);
+    expect($productB->getKey())->toBe($id);
 });
