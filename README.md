@@ -1,6 +1,6 @@
 # Generate IDs using Twitter Snowflake
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/dive-be/eloquent-snowflake.svg?style=flat-square)](https://packagist.org/packages/dive-be/eloquent-snowflake)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/dive-be/laravel-snowflake.svg?style=flat-square)](https://packagist.org/packages/dive-be/laravel-snowflake)
 
 
 This package assists you in creating [Snowflake identifiers](https://en.wikipedia.org/wiki/Snowflake_ID) for your Eloquent models.
@@ -20,12 +20,11 @@ You would not be using this package anyway if you were to hit such an enormous s
 You can install the package via composer:
 
 ```bash
-composer require dive-be/eloquent-snowflake
+composer require dive-be/laravel-snowflake
 ```
 
 You can publish the config file with:
 
-```
 ```bash
 php artisan vendor:publish --provider="Dive\Snowflake\ServiceProvider" --tag="config"
 ```

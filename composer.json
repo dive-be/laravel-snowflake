@@ -1,5 +1,5 @@
 {
-    "name": "dive-be/eloquent-snowflake",
+    "name": "dive-be/laravel-snowflake",
     "description": "Generate identifiers using Twitter Snowflake",
     "keywords": [
         "dive",
@@ -7,7 +7,7 @@
         "laravel",
         "snowflake"
     ],
-    "homepage": "https://github.com/dive-be/eloquent-snowflake",
+    "homepage": "https://github.com/dive-be/laravel-snowflake",
     "license": "MIT",
     "authors": [
         {
