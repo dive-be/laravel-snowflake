@@ -46,12 +46,8 @@ return [
 
 ### Migrations
 
-If you have been using `unsignedBigInteger`s for your `id` columns up until now, which is the Laravel default, you do not have to
-change anything at all. 
-
-However, if you'd like to be more expressive regarding the columns' intent,
-you may use the `snowflake` (alias for `id`) or `foreignSnowflake` (alias for `foreignId`)
-methods in your migrations.
+- Use `snowflake` to define a Snowflake column
+- Use `foreignSnowflake` to reference another Snowflake (alias for `foreignId`)
 
 ```php
 Schema::table('products', static function (Blueprint $table) {
@@ -96,6 +92,10 @@ JSON.parse("{\"a\":10n}")
 
 Therefore, to make sure the identifiers are not truncated while deserializing them on the front-end using `JSON.parse` and alike, 
 you should not send actual integers but rather strings.
+
+```php
+protected $casts = ['id' => 'string'];
+```
 
 ## Testing
 
