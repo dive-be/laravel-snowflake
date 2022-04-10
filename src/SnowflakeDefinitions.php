@@ -16,6 +16,6 @@ final class SnowflakeDefinitions
 
     public function snowflake(): Closure
     {
-        return fn (string $column = 'id') => $this->id($column);
+        return fn (string $column = 'id') => $this->unsignedBigInteger($column)->primary();
     }
 }
