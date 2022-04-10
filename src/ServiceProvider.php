@@ -21,7 +21,7 @@ final class ServiceProvider extends BaseServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/snowflake.php', 'snowflake');
+        $this->mergeConfigFrom(__DIR__ . '/../config/snowflake.php', 'snowflake');
 
         $this->app->singleton('snowflake', $this->registerSnowflake(...));
     }
@@ -31,7 +31,7 @@ final class ServiceProvider extends BaseServiceProvider
         $config = 'snowflake.php';
 
         $this->publishes([
-            __DIR__.'/../config/'.$config => $this->app->configPath($config),
+            __DIR__ . '/../config/' . $config => $this->app->configPath($config),
         ], 'config');
     }
 
