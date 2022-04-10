@@ -1,4 +1,4 @@
-# Generate IDs using Twitter Snowflake
+# ❄️ Generate IDs using Twitter Snowflake
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dive-be/laravel-snowflake.svg?style=flat-square)](https://packagist.org/packages/dive-be/laravel-snowflake)
 
@@ -10,10 +10,6 @@ It is a Laravel wrapper for [godruoyi/php-snowflake](https://github.com/godruoyi
 ## What problem does this package solve?
 
 Please refer to the [original library](https://github.com/godruoyi/php-snowflake) for more information regarding Snowflakes.
-
-We have intentionally ignored the settings for a distributed architectural setup.
-You would not be using this package anyway if you were to hit such an enormous scale.
-
 
 ## Installation
 
@@ -44,11 +40,62 @@ return [
 
 ## Usage
 
-> ⚠️ We recommend to use a high-performing cache driver such as `Redis` to ensure rapid ID generation. 
+> ⚠️ Use a high-performing cache driver such as `Redis` to ensure rapid ID generation. 
 
 > ❗️ Do **not** use an ephemeral cache driver such as `array` in production!
 
-TODO
+### Migrations
+
+If you have been using `unsignedBigInteger`s for your `id` columns up until now, which is the Laravel default, you do not have to
+change anything at all. 
+
+However, if you'd like to be more expressive regarding the columns' intent,
+you may use the `snowflake` (alias for `id`) or `foreignSnowflake` (alias for `foreignId`)
+methods in your migrations.
+
+```php
+Schema::table('products', static function (Blueprint $table) {
+    $table->snowflake();
+    $table->foreignSnowflake('variant_id')->constrained();
+});
+```
+
+### Models
+
+Use the `HasSnowflake` trait in your Eloquent models:
+
+```php
+class Product extends Model
+{
+    use HasSnowflake;
+}
+```
+
+### Manual generation
+
+You have a couple of options if you'd like to generate your Snowflake identifiers manually:
+
+```php
+Snowflake::id(); // Facade
+snowflake(); // Helper
+app('snowflake'); // Service Locator
+
+// Dependency Injection
+public function __construct(\Godruoyi\Snowflake\Snowflake $snowflake) {}
+```
+
+### 📣 Note on JavaScript compatibility
+
+While JavaScript itself actually [supports `BigInt`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), 
+the `JSON` standard does not.
+
+```js
+JSON.parse("{\"a\":10n}")
+// Uncaught SyntaxError: Unexpected token n in JSON at position 7
+```
+
+Therefore, to make sure the identifiers are not truncated while deserializing them on the front-end using `JSON.parse` and alike, 
+you should not send actual integers but rather strings.
 
 ## Testing
 
