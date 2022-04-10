@@ -2,10 +2,10 @@
 
 namespace Tests\Fakes;
 
-use Dive\Snowflake\HasSnowflakes;
+use Dive\Snowflake\HasSnowflake;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasSnowflakes;
+    use HasSnowflake;
 }

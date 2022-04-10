@@ -4,9 +4,9 @@ namespace Dive\Snowflake;
 
 use Illuminate\Database\Eloquent\Model;
 
-trait HasSnowflakes
+trait HasSnowflake
 {
-    public static function bootHasSnowflakes()
+    public static function bootHasSnowflake()
     {
         static::creating(static function (Model $model) {
            if (is_null($model->getKey())) {
@@ -15,7 +15,7 @@ trait HasSnowflakes
         });
     }
 
-    public function initializeHasSnowflakes()
+    public function initializeHasSnowflake()
     {
         $this->incrementing = false;
     }
