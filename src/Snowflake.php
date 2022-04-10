@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see \Godruoyi\Snowflake\Snowflake
  */
-class Snowflake extends Facade
+final class Snowflake extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
