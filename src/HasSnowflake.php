@@ -17,6 +17,7 @@ trait HasSnowflake
 
     public function initializeHasSnowflake()
     {
+        $this->casts[$this->getKeyName()] = 'string';
         $this->incrementing = false;
     }
 }

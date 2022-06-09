@@ -26,8 +26,8 @@ test('service is bound correctly', function () {
 
     expect($serviceA)
         ->toBeInstanceOf(Snowflake::class)
-        ->getSequenceResolver()->toBeInstanceOf(LaravelSequenceResolver::class);
-    expect($serviceA)->toBe($serviceB);
+        ->getSequenceResolver()->toBeInstanceOf(LaravelSequenceResolver::class)
+        ->and($serviceA)->toBe($serviceB);
 });
 
 test('blueprint definitions', function () {
@@ -43,6 +43,6 @@ test('model trait', function () {
     $productA = Product::create();
     $productB = Product::create(['id' => ($id = 1337133713371337133)]);
 
-    expect($productA->getKey())->toHaveLength(19);
-    expect($productB->getKey())->toBe($id);
+    expect($productA->getKey())->toHaveLength(19)
+        ->and($productB->getKey())->toBeString()->toEqual($id);
 });

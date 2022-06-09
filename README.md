@@ -91,11 +91,7 @@ JSON.parse("{\"a\":10n}")
 ```
 
 Therefore, to make sure the identifiers are not truncated while deserializing them on the front-end using `JSON.parse` and alike, 
-you should not send actual integers but rather strings.
-
-```php
-protected $casts = ['id' => 'string'];
-```
+the package will automatically cast the models' `id` field to `string`.
 
 ## Testing
 
