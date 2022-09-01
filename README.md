@@ -1,3 +1,5 @@
+<p><img src="https://github.com/dive-be/laravel-snowflake/blob/master/art/socialcard.png?raw=true" alt="Social Card of Laravel Dry Requests" style="max-width:830px"></p>
+
 # ❄️ Generate IDs using Twitter Snowflake
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dive-be/laravel-snowflake.svg?style=flat-square)](https://packagist.org/packages/dive-be/laravel-snowflake)
@@ -40,7 +42,7 @@ return [
 
 ## Usage
 
-> ⚠️ Use a high-performing cache driver such as `Redis` to ensure rapid ID generation. 
+> ⚠️ Use a high-performing cache driver such as `Redis` to ensure rapid ID generation.
 
 > ❗️ Do **not** use an ephemeral cache driver such as `array` in production!
 
@@ -82,7 +84,7 @@ public function __construct(\Godruoyi\Snowflake\Snowflake $snowflake) {}
 
 ### 📣 Note on JavaScript compatibility
 
-While JavaScript itself actually [supports `BigInt`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), 
+While JavaScript itself actually [supports `BigInt`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt),
 the `JSON` standard does not.
 
 ```js
@@ -90,7 +92,7 @@ JSON.parse("{\"a\":10n}")
 // Uncaught SyntaxError: Unexpected token n in JSON at position 7
 ```
 
-Therefore, to make sure the identifiers are not truncated while deserializing them on the front-end using `JSON.parse` and alike, 
+Therefore, to make sure the identifiers are not truncated while deserializing them on the front-end using `JSON.parse` and alike,
 the package will automatically cast the models' `id` field to `string`.
 
 ## Testing
