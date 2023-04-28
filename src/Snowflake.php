@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string id()
- * @method static array parseId(string $id, bool $transform = false)
+ * @method static array  parseId(string $id, bool $transform = false)
  *
  * @see \Godruoyi\Snowflake\Snowflake
  */

@@ -6,9 +6,9 @@ use Dive\Snowflake\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
-use Orchestra\Testbench\TestCase as BaseTestCase;
+use Orchestra\Testbench\TestCase as TestCaseBase;
 
-class TestCase extends BaseTestCase
+abstract class TestCase extends TestCaseBase
 {
     protected function getPackageProviders($app): array
     {
@@ -24,7 +24,7 @@ class TestCase extends BaseTestCase
         Model::unguard();
     }
 
-    protected function setUpDatabase(Builder $schema)
+    protected function setUpDatabase(Builder $schema): void
     {
         $schema->dropAllTables();
 

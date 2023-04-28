@@ -4,9 +4,7 @@ namespace Dive\Snowflake;
 
 use Closure;
 
-/**
- * @mixin \Illuminate\Database\Schema\Blueprint
- */
+/** @mixin \Illuminate\Database\Schema\Blueprint */
 final class SnowflakeDefinitions
 {
     public function foreignSnowflake(): Closure

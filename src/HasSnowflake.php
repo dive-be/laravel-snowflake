@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasSnowflake
 {
-    public static function bootHasSnowflake()
+    public static function bootHasSnowflake(): void
     {
         static::creating(static function (Model $model) {
-           if (is_null($model->getKey())) {
-               $model->setAttribute($model->getKeyName(), Snowflake::id());
-           }
+            if (is_null($model->getKey())) {
+                $model->setAttribute($model->getKeyName(), Snowflake::id());
+            }
         });
     }
 
-    public function initializeHasSnowflake()
+    public function initializeHasSnowflake(): void
     {
         $this->casts[$this->getKeyName()] = 'string';
         $this->incrementing = false;

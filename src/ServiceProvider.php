@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 final class ServiceProvider extends BaseServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->registerConfig();
@@ -19,7 +19,7 @@ final class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/snowflake.php', 'snowflake');
 
@@ -27,7 +27,7 @@ final class ServiceProvider extends BaseServiceProvider
         $this->app->alias('snowflake', Snowflake::class);
     }
 
-    private function registerConfig()
+    private function registerConfig(): void
     {
         $config = 'snowflake.php';
 
@@ -36,7 +36,7 @@ final class ServiceProvider extends BaseServiceProvider
         ], 'config');
     }
 
-    private function registerMacros()
+    private function registerMacros(): void
     {
         Blueprint::mixin(new SnowflakeDefinitions());
     }
