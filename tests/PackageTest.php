@@ -6,43 +6,59 @@ use Dive\Snowflake\Snowflake as Facade;
 use Godruoyi\Snowflake\LaravelSequenceResolver;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Database\Schema\Blueprint;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Fakes\Product;
 
-test('snowflake facade', function () {
-    $value = Facade::id();
+final class PackageTest extends TestCase
+{
+    #[Test]
+    public function snowflake_facade(): void
+    {
+        $value = Facade::id();
 
-    expect($value)->toBeString()->toHaveLength(19);
-});
+        $this->assertIsString($value);
+        $this->assertSame(19, strlen($value));
+    }
 
-test('snowflake helper', function () {
-    $value = snowflake();
+    #[Test]
+    public function snowflake_helper(): void
+    {
+        $value = snowflake();
 
-    expect($value)->toBeString()->toHaveLength(19);
-});
+        $this->assertIsString($value);
+        $this->assertSame(19, strlen($value));
+    }
 
-test('service is bound correctly', function () {
-    $serviceA = app('snowflake');
-    $serviceB = app(Snowflake::class);
+    #[Test]
+    public function service_is_bound_correctly(): void
+    {
+        $serviceA = app('snowflake');
+        $serviceB = app(Snowflake::class);
 
-    expect($serviceA)
-        ->toBeInstanceOf(Snowflake::class)
-        ->getSequenceResolver()->toBeInstanceOf(LaravelSequenceResolver::class)
-        ->and($serviceA)->toBe($serviceB);
-});
+        $this->assertInstanceOf(Snowflake::class, $serviceA);
+        $this->assertInstanceOf(LaravelSequenceResolver::class, $serviceA->getSequenceResolver());
+        $this->assertSame($serviceA, $serviceB);
+    }
 
-test('blueprint definitions', function () {
-    $blueprint = new Blueprint('tests', static function (Blueprint $table) {
-        $table->snowflake();
-        $table->foreignSnowflake('user_id');
-    });
+    #[Test]
+    public function blueprint_definitions(): void
+    {
+        $blueprint = new Blueprint('tests', static function (Blueprint $table) {
+            $table->snowflake();
+            $table->foreignSnowflake('user_id');
+        });
 
-    expect($blueprint->getColumns())->toBeArray()->toHaveLength(2);
-});
+        $this->assertCount(2, $blueprint->getColumns());
+    }
 
-test('model trait', function () {
-    $productA = Product::create();
-    $productB = Product::create(['id' => ($id = 1337133713371337133)]);
+    #[Test]
+    public function model_trait(): void
+    {
+        $productA = Product::create();
+        $productB = Product::create(['id' => ($id = 1337133713371337133)]);
 
-    expect($productA->getKey())->toHaveLength(19)
-        ->and($productB->getKey())->toBeString()->toEqual($id);
-});
+        $this->assertIsString($productA->getKey());
+        $this->assertSame(19, strlen($productA->getKey()));
+        $this->assertEquals($id, $productB->getKey());
+    }
+}

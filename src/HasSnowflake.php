@@ -4,6 +4,7 @@ namespace Dive\Snowflake;
 
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin Model */
 trait HasSnowflake
 {
     public static function bootHasSnowflake(): void

@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Dive\Snowflake\ServiceProvider;
+use Dive\Snowflake\SnowflakeServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
@@ -12,7 +12,7 @@ abstract class TestCase extends TestCaseBase
 {
     protected function getPackageProviders($app): array
     {
-        return [ServiceProvider::class];
+        return [SnowflakeServiceProvider::class];
     }
 
     protected function setUp(): void

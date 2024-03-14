@@ -7,9 +7,9 @@ use Godruoyi\Snowflake\LaravelSequenceResolver;
 use Godruoyi\Snowflake\Snowflake;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-final class ServiceProvider extends BaseServiceProvider
+final class SnowflakeServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
